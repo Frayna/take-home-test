@@ -40,7 +40,10 @@ export class Pharmacy {
           this.drugs[i].benefit = Math.min(this.drugs[i].benefit + 1, 50);
         }
       } else if (this.drugs[i].name === "Dafalgan") {
-        this.drugs[i].benefit = Math.max(this.drugs[i].benefit - 2, 0);
+        this.drugs[i].benefit = Math.max(
+          this.drugs[i].benefit - (this.drugs[i].expiresIn < 0 ? 4 : 2),
+          0,
+        );
       } else {
         this.drugs[i].benefit = Math.max(
           this.drugs[i].benefit - (this.drugs[i].expiresIn < 0 ? 2 : 1),
