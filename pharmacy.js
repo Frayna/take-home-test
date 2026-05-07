@@ -17,7 +17,6 @@ export class Pharmacy {
       }
 
       if (["Herbal Tea", "Fervex"].includes(this.drugs[i].name)) {
-        //TODO: this must be entirelly skipped if benefit + 1 > 50
         if (this.drugs[i].benefit < 50) {
           this.drugs[i].benefit = this.drugs[i].benefit + 1;
           if (this.drugs[i].name == "Fervex" && this.drugs[i].expiresIn < 11) {
@@ -30,7 +29,7 @@ export class Pharmacy {
           }
         }
       } else if (this.drugs[i].benefit > 0) {
-        this.drugs[i].benefit = this.drugs[i].benefit - 1;
+        this.drugs[i].benefit = this.drugs[i].benefit - (this.drugs[i].name ===  "Dafalgan" ? 2 : 1);
       }
 
       this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
@@ -42,7 +41,7 @@ export class Pharmacy {
             continue;
         }
         if (this.drugs[i].name != "Fervex" && this.drugs[i].benefit > 0) {
-              this.drugs[i].benefit = this.drugs[i].benefit - 1;
+              this.drugs[i].benefit = this.drugs[i].benefit - (this.drugs[i].name ===  "Dafalgan" ? 2 : 1);
         } else {
           this.drugs[i].benefit = 0;
         }
